@@ -28,19 +28,18 @@ const DarkMode= withStyles({
   track: {},
 })(Switch);
 
-  const dictapi= async () => {
-    try{
-    const data= await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`);
-    setMeanings(data.data);
-    
-    }
-    catch(error){
-      console.log(error);
-    }
-    console.log(Meanings);
-  }
   useEffect(()=>{
-    dictapi();
+    async function dictapi(){
+      try{
+        const data= await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`);
+        setMeanings(data.data);
+        
+        }
+        catch(error){
+          console.log(error);
+        }
+    }
+  dictapi()
   },[word,category]);
   return (
     <div className="App" style={{backgroundColor:LightMode ? "#fff" : "#282c34",height:"100vh",width:"100%",color: LightMode ? "black" : "white"}}>
@@ -49,8 +48,8 @@ const DarkMode= withStyles({
           <span>{LightMode ? "Dark" : "Light"}Mode</span>
         <DarkMode onChange={()=>setLightmode(!LightMode)} checked={LightMode}></DarkMode>
         </div>
-      <Header category={category} setCategory={setCategory} word={word} setWord={setWord} LightMode={LightMode} setLightmode={setLightmode}> </Header>
-     { Meanings && (<Definitions word={word} category={category} Meanings={Meanings} LightMode={LightMode} setLightmode={setLightmode}> </Definitions>)}
+      <Header category={category} setCategory={setCategory} word={word} setWord={setWord} LightMode={LightMode}> </Header>
+     { Meanings && (<Definitions word={word} category={category} Meanings={Meanings} LightMode={LightMode}> </Definitions>)}
       </Container>
     </div>
   );
