@@ -1,0 +1,22 @@
+.meanings {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    border: 10px solid rgb(105,105,105);
+    height: 55vh;
+    padding: 10px 20px;
+}
+
+.subTitle{
+    font-size: 5vw;
+    font-family: 'Montserrat',sans-serif;
+}
+
+.singleMeaning{
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin: 10px 0px;
+}
